@@ -45,6 +45,12 @@ function generatePlane() {
     world.plane.heightSegments);
   const {array} = planeMesh.geometry.attributes.position
 
+  colors = [];
+
+  for (let i = 0; i < planeMesh.geometry.attributes.position.count; i++) {
+    colors.push(0, 0, 1);
+  }
+  
   for (let i = 0; i < array.length; i+= 3) {
     array[i + 2] = array[i + 2] + Math.random()
   }
@@ -92,7 +98,7 @@ for (let i = 0; i < array.length; i+= 3) {
 
 }
 
-for (let i = 0; i < array.length / 3; i++) {
+for (let i = 0; i < planeMesh.geometry.attributes.position.count; i++) {
   
   colors.push(0, 0, 1);
 
