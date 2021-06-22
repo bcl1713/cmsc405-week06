@@ -29,15 +29,15 @@ const world = {
     heightSegments: 5
   }
 }
-gui.add(world.light, 'intensity', 0, 5).onChange((changeLights));
+// gui.add(world.light, 'intensity', 0, 5).onChange((changeLights));
 
-gui.add(world.plane, 'width', 1, 500).onChange((generatePlane));
+// gui.add(world.plane, 'width', 1, 500).onChange((generatePlane));
 
-gui.add(world.plane, 'height', 1, 500).onChange((generatePlane));
+// gui.add(world.plane, 'height', 1, 500).onChange((generatePlane));
 
-gui.add(world.plane, 'widthSegments', 1, 20).onChange((generatePlane));
+// gui.add(world.plane, 'widthSegments', 1, 20).onChange((generatePlane));
 
-gui.add(world.plane, 'heightSegments', 1, 20).onChange((generatePlane));
+// gui.add(world.plane, 'heightSegments', 1, 20).onChange((generatePlane));
 
 const colors = []
 
