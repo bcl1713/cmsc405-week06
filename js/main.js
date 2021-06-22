@@ -10,7 +10,7 @@
  */
 
 import * as THREE from './lib/three.module.js';
-import * as dat from '.lib/dat.gui.module.js';
+import * as dat from './lib/dat.gui.module.js';
 
 const gui = new dat.GUI();
 
