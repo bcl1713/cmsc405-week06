@@ -83,7 +83,7 @@ const planeMaterial = new THREE.MeshPhongMaterial({
 const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 
 for (let i = 0; i < planeMesh.geometry.attributes.position.count; i++) {
-  colors.push(0, 0, 1);
+  colors.push(0, 0.19, 0.4);
 }
 
 planeMesh.geometry.setAttribute('color', 
@@ -129,17 +129,17 @@ function animate() {
   const intersects = raycaster.intersectObject(planeMesh);
 
   if (intersects.length > 0) {
-    intersects[0].object.geometry.attributes.color.setX(intersects[0].face.a, 1);
-    intersects[0].object.geometry.attributes.color.setY(intersects[0].face.a, 1);
-    intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.a, 1);
+    intersects[0].object.geometry.attributes.color.setX(intersects[0].face.a, 0.1);
+    intersects[0].object.geometry.attributes.color.setY(intersects[0].face.a, 0.5);
+    intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.a, 1.0);
     
-    intersects[0].object.geometry.attributes.color.setX(intersects[0].face.b, 1);
-    intersects[0].object.geometry.attributes.color.setY(intersects[0].face.b, 1);
-    intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.b, 1);
+    intersects[0].object.geometry.attributes.color.setX(intersects[0].face.b, 0.1);
+    intersects[0].object.geometry.attributes.color.setY(intersects[0].face.b, 0.5);
+    intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.b, 1.0);
     
-    intersects[0].object.geometry.attributes.color.setX(intersects[0].face.c, 1);
-    intersects[0].object.geometry.attributes.color.setY(intersects[0].face.c, 1);
-    intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.c, 1);
+    intersects[0].object.geometry.attributes.color.setX(intersects[0].face.c, 0.1);
+    intersects[0].object.geometry.attributes.color.setY(intersects[0].face.c, 0.5);
+    intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.c, 1.0);
 
     intersects[0].object.geometry.attributes.color.needsUpdate = true
   }
