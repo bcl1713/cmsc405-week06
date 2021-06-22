@@ -18,7 +18,7 @@ const world = {
     width: 10
   }
 }
-gui.add(world.plane, 'width', 1, 500, onChange(() => {
+gui.add(world.plane, 'width', 1, 500).onChange(() => {
   planeMesh.geometry.dispose()
   planeMesh.geometry = new THREE.PlaneGeometry(world.plane.width, 10, 10, 10);
   const {array} = planeMesh.geometry.attributes.position
@@ -26,7 +26,7 @@ gui.add(world.plane, 'width', 1, 500, onChange(() => {
   for (let i = 0; i < array.length; i+= 3) {
     array[i + 2] = array[i + 2] + Math.random()
   }
-}));
+});
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000);
