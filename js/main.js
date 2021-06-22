@@ -20,15 +20,15 @@ import * as dat from './lib/dat.gui.module.js';
 const gui = new dat.GUI();
 const world = {
   plane: {
-    width: 2,
-    height: 2,
-    widthSegments: 10,
-    heightSegments: 10
+    width: 20,
+    height: 20,
+    widthSegments: 50,
+    heightSegments: 50
   }
 }
-gui.add(world.plane, 'width', 1, 20).onChange((generatePlane));
+gui.add(world.plane, 'width', 1, 50).onChange((generatePlane));
 
-gui.add(world.plane, 'height', 1, 20).onChange((generatePlane));
+gui.add(world.plane, 'height', 1, 50).onChange((generatePlane));
 
 gui.add(world.plane, 'widthSegments', 1, 20).onChange((generatePlane));
 
