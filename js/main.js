@@ -78,12 +78,12 @@ for (let i = 0; i < array.length; i+= 3) {
 }
 
 const light = new THREE.PointLight(0xffffff, 1);
-light.position.set(0, 0, 5);
+light.position.set(0, 0, 4);
 
 scene.add(light);
 
 const backLight = new THREE.PointLight(0xffffff, 1);
-light.position.set(0, 0, -5);
+light.position.set(0, 0, -4);
 
 scene.add(backLight);
 
