@@ -15,12 +15,61 @@ import * as dat from './lib/dat.gui.module.js';
 const gui = new dat.GUI();
 const world = {
   plane: {
-    width: 10
+    width: 2,
+    height: 2,
+    widthSegments: 10,
+    heightSegments: 10
   }
 }
-gui.add(world.plane, 'width', 1, 500).onChange(() => {
+gui.add(world.plane, 'width', 1, 20).onChange(() => {
   planeMesh.geometry.dispose()
-  planeMesh.geometry = new THREE.PlaneGeometry(world.plane.width, 10, 10, 10);
+  planeMesh.geometry = new THREE.PlaneGeometry(
+    world.plane.width, 
+    world.plane.height, 
+    world.plane.widthSegments, 
+    world.plane.heightSegments);
+  const {array} = planeMesh.geometry.attributes.position
+
+  for (let i = 0; i < array.length; i+= 3) {
+    array[i + 2] = array[i + 2] + Math.random()
+  }
+});
+
+gui.add(world.plane, 'height', 1, 20).onChange(() => {
+  planeMesh.geometry.dispose()
+  planeMesh.geometry = new THREE.PlaneGeometry(
+    world.plane.width, 
+    world.plane.height, 
+    world.plane.widthSegments, 
+    world.plane.heightSegments);
+  const {array} = planeMesh.geometry.attributes.position
+
+  for (let i = 0; i < array.length; i+= 3) {
+    array[i + 2] = array[i + 2] + Math.random()
+  }
+});
+
+gui.add(world.plane, 'widthSegments', 1, 20).onChange(() => {
+  planeMesh.geometry.dispose()
+  planeMesh.geometry = new THREE.PlaneGeometry(
+    world.plane.width, 
+    world.plane.height, 
+    world.plane.widthSegments, 
+    world.plane.heightSegments);
+  const {array} = planeMesh.geometry.attributes.position
+
+  for (let i = 0; i < array.length; i+= 3) {
+    array[i + 2] = array[i + 2] + Math.random()
+  }
+});
+
+gui.add(world.plane, 'heightSegments', 1, 20).onChange(() => {
+  planeMesh.geometry.dispose()
+  planeMesh.geometry = new THREE.PlaneGeometry(
+    world.plane.width, 
+    world.plane.height, 
+    world.plane.widthSegments, 
+    world.plane.heightSegments);
   const {array} = planeMesh.geometry.attributes.position
 
   for (let i = 0; i < array.length; i+= 3) {
@@ -35,7 +84,11 @@ const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(innerWidth, innerHeight);
 document.body.appendChild(renderer.domElement);
 
-const planeGeometry = new THREE.PlaneGeometry(world.plane.width, 10, 10, 10);
+const planeGeometry = new THREE.PlaneGeometry(
+  world.plane.width, 
+  world.plane.height, 
+  world.plane.widthSegments, 
+  world.plane.heightSegments);
 const planeMaterial = new THREE.MeshPhongMaterial({
   color: 0xff0000, 
   side: THREE.DoubleSide,
