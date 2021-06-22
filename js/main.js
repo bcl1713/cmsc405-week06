@@ -7,6 +7,8 @@
  * Last Modified: Tue Jun 22 2021
  * HISTORY:
  * Date        Comments
+ * 2021-06-22  Normalize mouse coords
+ * 2021-06-22  Add mouse listener
  */
 
 import { OrbitControls } from './lib/OrbitControls.js';
@@ -107,7 +109,7 @@ const mouse = {
 }
 
 addEventListener('mousemove', (event) => {
-  mouse.x = event.clientX;
-  mouse.y = event.clientY;
+  mouse.x = (event.clientX / innerWidth) * 2 - 1;
+  mouse.y = -((event.clientY / innerHeight) * 2 - 1);
   console.log(mouse);
 })
