@@ -48,6 +48,11 @@ function generatePlane() {
   }
 }
 
+const raycaster = new THREE.Raycaster();
+const mouse = {
+  x: undefined,
+  y: undefined
+}
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({antialias: true});
@@ -61,9 +66,9 @@ const planeGeometry = new THREE.PlaneGeometry(
   world.plane.widthSegments, 
   world.plane.heightSegments);
 const planeMaterial = new THREE.MeshPhongMaterial({
-  color: 0xff0000, 
   side: THREE.DoubleSide,
-  flatShading: THREE.FlatShading
+  flatShading: THREE.FlatShading,
+  vertexColors: true
 });
 const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 
@@ -78,6 +83,16 @@ for (let i = 0; i < array.length; i+= 3) {
   array[i + 2] = array[i + 2] + Math.random()
 
 }
+
+const colors = []
+
+for (let i = 0; i < array.length / 3; i++) {
+  colors.push(0, 0, 1);
+}
+
+planeMesh.geometry.setAttribute('color', 
+  new THREE.BufferAttribute(new Float32Array(colors), 
+  3));
 
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(0, 0, 4);
@@ -98,18 +113,14 @@ controls.update();
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObject(planeMesh);
   controls.update();
 }
 
 animate();
 
-const mouse = {
-  x: undefined,
-  y: undefined
-}
-
 addEventListener('mousemove', (event) => {
   mouse.x = (event.clientX / innerWidth) * 2 - 1;
   mouse.y = -((event.clientY / innerHeight) * 2 - 1);
-  console.log(mouse);
 })
