@@ -130,8 +130,8 @@ function animate() {
 
   if (intersects.length > 0) {
     intersects[0].object.geometry.attributes.color.setX(intersects[0].face.a, 1);
-    intersects[0].object.geometry.attributes.color.setY(intersects[0].face.a, 1);
-    intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.a, 1);
+    intersects[0].object.geometry.attributes.color.setX(intersects[0].face.a + 1, 1);
+    intersects[0].object.geometry.attributes.color.setX(intersects[0].face.a + 1, 1);
     intersects[0].object.geometry.attributes.color.needsUpdate = true
   }
 
