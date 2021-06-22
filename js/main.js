@@ -108,7 +108,7 @@ scene.add(backLight);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
-camera.position.set(0, 0, 5);
+camera.position.set(0, 0, 50);
 controls.update();
 
 let frame = 0;
