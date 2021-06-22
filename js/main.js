@@ -44,7 +44,6 @@ const colors = []
 function changeLights() {
   console.log(light);
   light.intensity = world.light.intensity;
-  light.intensity.needsUpdate = true;
 }
 
 function generatePlane() {
