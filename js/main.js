@@ -10,6 +10,9 @@
  */
 
 import * as THREE from './lib/three.module.js';
+import * as dat from '.lib/dat.gui.module.js';
+
+const gui = new dat.GUI();
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000);
