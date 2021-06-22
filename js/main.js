@@ -10,7 +10,6 @@
  */
 
 import * as THREE from './lib/three.module.js';
-import { OrbitControls } from './lib/OrbitControls.js';
 import * as dat from './lib/dat.gui.module.js';
 
 
@@ -87,13 +86,15 @@ light.position.set(0, 0, -5);
 
 scene.add(backLight);
 
-new OrbitControls(camera, render.domElement);
-camera.position.z = 5;
+const controls = new OrbitControls(camera, render.domElement);
+camera.position.set(0, 20, 100);
+controls.update();
 
 
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
+  controls.update();
 }
 
 animate();
