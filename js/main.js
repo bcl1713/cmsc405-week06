@@ -80,11 +80,12 @@ const planeMaterial = new THREE.MeshPhongMaterial({
   vertexColors: true
 });
 
+const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
+
 for (let i = 0; i < planeMesh.geometry.attributes.position.count; i++) {
   colors.push(0, 0, 1);
 }
 
-const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 planeMesh.geometry.setAttribute('color', 
   new THREE.BufferAttribute(new Float32Array(colors), 
   3));
