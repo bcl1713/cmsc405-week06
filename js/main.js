@@ -17,7 +17,7 @@ import * as dat from './lib/dat.gui.module.js';
 
 
 
-const gui = new dat.GUI();
+// const gui = new dat.GUI();
 const world = {
   light: {
     intensity: 1
