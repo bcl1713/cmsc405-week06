@@ -13,3 +13,22 @@
 body {
   margin: 0;
 }
+
+.absolute {
+  position: absolute;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.vertical-center {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 50%;
+  transform: translateX(-50%);
+}
