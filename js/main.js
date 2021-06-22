@@ -96,7 +96,7 @@ const {array} = planeMesh.geometry.attributes.position
 
 for (let i = 0; i < array.length; i+= 3) {
  
-  array[i + 2] = array[i + 2] + Math.random()
+  array[i + 2] = array[i + 2] + Math.random() / 2 - 1
 
 }
 
