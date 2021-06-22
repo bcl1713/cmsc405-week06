@@ -10,8 +10,13 @@
  */
 
 
+body, html {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  background-color: black;
 }
 
 .absolute {
@@ -36,12 +41,16 @@ body {
 }
 
 .landing-box {
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  /* position: absolute;
   margin: 0;
   top: 50%;
   transform: translateY(-50%);
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); */
   text-align: center;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   color: #b1e6ff;
