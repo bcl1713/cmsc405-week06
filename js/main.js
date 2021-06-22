@@ -137,10 +137,10 @@ function animate() {
     intersects[0].object.geometry.attributes.color.setY(intersects[0].face.b, 1);
     intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.b, 1);
     
-    intersects[0].object.geometry.attributes.color.setX(intersects[0].face.b, 1);
-    intersects[0].object.geometry.attributes.color.setY(intersects[0].face.b, 1);
-    intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.b, 1);
-    
+    intersects[0].object.geometry.attributes.color.setX(intersects[0].face.c, 1);
+    intersects[0].object.geometry.attributes.color.setY(intersects[0].face.c, 1);
+    intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.c, 1);
+
     intersects[0].object.geometry.attributes.color.needsUpdate = true
   }
 
