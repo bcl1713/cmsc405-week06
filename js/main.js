@@ -77,12 +77,12 @@ for (let i = 0; i < array.length; i+= 3) {
 
 }
 
-const light = new THREE.DirectionalLight(0xffffff, 1);
+const light = new THREE.PointLight(0xffffff, 1);
 light.position.set(0, 0, 5);
 
 scene.add(light);
 
-const backLight = new THREE.DirectionalLight(0xffffff, 1);
+const backLight = new THREE.PointLight(0xffffff, 1);
 light.position.set(0, 0, -5);
 
 scene.add(backLight);
