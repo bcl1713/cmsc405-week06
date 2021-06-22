@@ -45,16 +45,16 @@ function generatePlane() {
     world.plane.heightSegments);
   const {array} = planeMesh.geometry.attributes.position
 
-  for (let i = 0; i < planeMesh.geometry.attributes.position.count; i++) {
-    colors.push(0, 0, 1);
-  }
+  // for (let i = 0; i < planeMesh.geometry.attributes.position.count; i++) {
+  //   colors.push(0, 0, 1);
+  // }
 
   for (let i = 0; i < array.length; i+= 3) {
     array[i + 2] = array[i + 2] + Math.random()
   }
-  planeMesh.geometry.setAttribute('color', 
-  new THREE.BufferAttribute(new Float32Array(colors), 
-  3));
+  // planeMesh.geometry.setAttribute('color', 
+  // new THREE.BufferAttribute(new Float32Array(colors), 
+  // 3));
 }
 
 const raycaster = new THREE.Raycaster();
@@ -129,6 +129,11 @@ function animate() {
   renderer.render(scene, camera);
   raycaster.setFromCamera(mouse, camera);
   const intersects = raycaster.intersectObject(planeMesh);
+
+  if (intersects.length > 0) {
+    console.log(intersects[0].object.geometry.attributes.color)
+  }
+
   controls.update();
 }
 
