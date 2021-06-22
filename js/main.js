@@ -19,6 +19,9 @@ import * as dat from './lib/dat.gui.module.js';
 
 const gui = new dat.GUI();
 const world = {
+  light: {
+    intensity: 1
+  },
   plane: {
     width: 400,
     height: 400,
@@ -26,6 +29,8 @@ const world = {
     heightSegments: 50
   }
 }
+gui.add(world.light, 'intensity', 0, 5).onChange((changeLights));
+
 gui.add(world.plane, 'width', 1, 500).onChange((generatePlane));
 
 gui.add(world.plane, 'height', 1, 500).onChange((generatePlane));
@@ -35,6 +40,10 @@ gui.add(world.plane, 'widthSegments', 1, 20).onChange((generatePlane));
 gui.add(world.plane, 'heightSegments', 1, 20).onChange((generatePlane));
 
 const colors = []
+
+function changeLights() {
+  console.log(light);
+}
 
 function generatePlane() {
   planeMesh.geometry.dispose()
@@ -98,11 +107,11 @@ const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 scene.add(planeMesh);
 generatePlane();
 
-const light = new THREE.DirectionalLight(0xffffff, 1);
+const light = new THREE.DirectionalLight(0xffffff, world.light.intensity);
 light.position.set(0, -1, 1);
 scene.add(light);
 
-const backLight = new THREE.DirectionalLight(0xffffff, 1);
+const backLight = new THREE.DirectionalLight(0xffffff, world.light.intensity);
 light.position.set(0, 0, -1);
 scene.add(backLight);
 
