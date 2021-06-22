@@ -92,8 +92,6 @@ planeMesh.geometry.setAttribute('color',
 
 scene.add(planeMesh);
 
-console.log(planeMesh.geometry.attributes.position.array);
-
 const {array} = planeMesh.geometry.attributes.position
 
 for (let i = 0; i < array.length; i+= 3) {
@@ -131,7 +129,10 @@ function animate() {
   const intersects = raycaster.intersectObject(planeMesh);
 
   if (intersects.length > 0) {
-    console.log(intersects[0].object.geometry.attributes.color)
+    intersects[0].object.geometry.attributes.color.setX(intersects[0].face.a, 1);
+    intersects[0].object.geometry.attributes.color.setY(intersects[0].face.a, 1);
+    intersects[0].object.geometry.attributes.color.setZ(intersects[0].face.a, 1);
+    intersects[0].object.geometry.attributes.color.needsUpdate = true
   }
 
   controls.update();
