@@ -62,8 +62,8 @@ function generatePlane() {
       const z = array[i + 2];
 
       array[i] = x + ((Math.random() - 0.5) * 0.5) * .2;
-      array[i + 1] = y + ((Math.random() - 0.5) * 0.5 * .2);
-      array[i + 2] = z + ((Math.random() - 0.5) * 0.5 * .2);
+      array[i + 1] = y + ((Math.random() - 0.5) * 0.5 * 0.5);
+      array[i + 2] = z + ((Math.random() - 0.5) * 0.5 * 0.5);
     }
 
     randomValues.push(Math.random() * Math.PI * 2)
@@ -134,8 +134,8 @@ function animate() {
     randomValues
   } = planeMesh.geometry.attributes.position
   for (let i = 0; i < array.length; i += 3) {
-    array[i] = originalPosition[i] + Math.cos(frame + randomValues[i]) * 0.001;
-    array[i + 1] = originalPosition[i + 1] + Math.sin(frame + randomValues[i + 1]) * 0.0001;
+    array[i] = originalPosition[i] + Math.cos(frame + randomValues[i]) * 0.01;
+    array[i + 1] = originalPosition[i + 1] + Math.sin(frame + randomValues[i + 1]) * 0.001;
   }
   planeMesh.geometry.attributes.position.needsUpdate = true
 
