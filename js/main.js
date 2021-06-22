@@ -9,6 +9,7 @@
  * Date        Comments
  */
 
+import { OrbitControls } from './lib/OrbitControls.js';
 import * as THREE from './lib/three.module.js';
 import * as dat from './lib/dat.gui.module.js';
 
@@ -86,7 +87,8 @@ light.position.set(0, 0, -5);
 
 scene.add(backLight);
 
-const controls = new OrbitControls(camera, render.domElement);
+const controls = new OrbitControls(camera, renderer.domElement);
+
 camera.position.set(0, 0, 5);
 controls.update();
 
