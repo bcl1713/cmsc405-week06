@@ -77,12 +77,12 @@ for (let i = 0; i < array.length; i+= 3) {
 
 }
 
-const light = new THREE.PointLight(0xffffff, 1);
+const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(0, 0, 4);
 
 scene.add(light);
 
-const backLight = new THREE.PointLight(0xffffff, 1);
+const backLight = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(0, 0, -4);
 
 scene.add(backLight);
@@ -100,3 +100,14 @@ function animate() {
 }
 
 animate();
+
+const mouse = {
+  x: undefined,
+  y: undefined
+}
+
+addEventListener('mousemove', (event) => {
+  mouse.x = event.clientX;
+  mouse.y = event.clientY;
+  console.log(mouse);
+})
