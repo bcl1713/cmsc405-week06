@@ -34,6 +34,12 @@ gui.add(world.plane, 'widthSegments', 1, 20).onChange((generatePlane));
 
 gui.add(world.plane, 'heightSegments', 1, 20).onChange((generatePlane));
 
+const colors = []
+
+for (let i = 0; i < array.length / 3; i++) {
+  colors.push(0, 0, 1);
+}
+
 function generatePlane() {
   planeMesh.geometry.dispose()
   planeMesh.geometry = new THREE.PlaneGeometry(
@@ -46,6 +52,9 @@ function generatePlane() {
   for (let i = 0; i < array.length; i+= 3) {
     array[i + 2] = array[i + 2] + Math.random()
   }
+  planeMesh.geometry.setAttribute('color', 
+  new THREE.BufferAttribute(new Float32Array(colors), 
+  3));
 }
 
 const raycaster = new THREE.Raycaster();
@@ -71,6 +80,9 @@ const planeMaterial = new THREE.MeshPhongMaterial({
   vertexColors: true
 });
 const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
+planeMesh.geometry.setAttribute('color', 
+  new THREE.BufferAttribute(new Float32Array(colors), 
+  3));
 
 scene.add(planeMesh);
 
@@ -84,15 +96,9 @@ for (let i = 0; i < array.length; i+= 3) {
 
 }
 
-const colors = []
 
-for (let i = 0; i < array.length / 3; i++) {
-  colors.push(0, 0, 1);
-}
 
-planeMesh.geometry.setAttribute('color', 
-  new THREE.BufferAttribute(new Float32Array(colors), 
-  3));
+
 
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(0, 0, 4);
