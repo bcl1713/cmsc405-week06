@@ -25,8 +25,8 @@ const world = {
   plane: {
     width: 25,
     height: 25,
-    widthSegments: 25,
-    heightSegments: 25
+    widthSegments: 5,
+    heightSegments: 5
   }
 }
 // gui.add(world.light, 'intensity', 0, 5).onChange((changeLights));
@@ -61,9 +61,9 @@ function generatePlane() {
       const y = array[i + 1];
       const z = array[i + 2];
 
-      array[i] = x + ((Math.random() - 0.5) * 0.5) * .2;
-      array[i + 1] = y + ((Math.random() - 0.5) * 0.5 * 0.5);
-      array[i + 2] = z + ((Math.random() - 0.5) * 0.5 * 0.5);
+      array[i] = x + (Math.random() - 0.5) * 3;
+      array[i + 1] = y + (Math.random() - 0.5) * 3;
+      array[i + 2] = z + (Math.random() - 0.5) * 3;
     }
 
     randomValues.push(Math.random() * Math.PI * 2)
