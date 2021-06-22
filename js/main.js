@@ -23,10 +23,10 @@ const world = {
     intensity: 1
   },
   plane: {
-    width: 400,
-    height: 400,
-    widthSegments: 50,
-    heightSegments: 50
+    width: 25,
+    height: 25,
+    widthSegments: 5,
+    heightSegments: 5
   }
 }
 gui.add(world.light, 'intensity', 0, 5).onChange((changeLights));
