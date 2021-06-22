@@ -36,10 +36,6 @@ gui.add(world.plane, 'heightSegments', 1, 20).onChange((generatePlane));
 
 const colors = []
 
-for (let i = 0; i < array.length / 3; i++) {
-  colors.push(0, 0, 1);
-}
-
 function generatePlane() {
   planeMesh.geometry.dispose()
   planeMesh.geometry = new THREE.PlaneGeometry(
@@ -93,6 +89,12 @@ const {array} = planeMesh.geometry.attributes.position
 for (let i = 0; i < array.length; i+= 3) {
  
   array[i + 2] = array[i + 2] + Math.random()
+
+}
+
+for (let i = 0; i < array.length / 3; i++) {
+  
+  colors.push(0, 0, 1);
 
 }
 
