@@ -47,6 +47,6 @@ body {
   left: 50%;
   text-align: center;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: #b1e6ff;
+  color: whitesmoke;
   transform: translate3d(-50%, -50%, 0);
 }
