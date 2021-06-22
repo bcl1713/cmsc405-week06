@@ -55,7 +55,7 @@ function generatePlane() {
     colors.push(0, 0.19, 0.4);
   }
 
-  planeMesh.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colros), 3));
+  planeMesh.geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(colors), 3));
  
 }
 
