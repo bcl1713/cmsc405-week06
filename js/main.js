@@ -45,12 +45,10 @@ function generatePlane() {
     world.plane.heightSegments);
   const {array} = planeMesh.geometry.attributes.position
 
-  colors = [];
-
   for (let i = 0; i < planeMesh.geometry.attributes.position.count; i++) {
     colors.push(0, 0, 1);
   }
-  
+
   for (let i = 0; i < array.length; i+= 3) {
     array[i + 2] = array[i + 2] + Math.random()
   }
@@ -81,6 +79,11 @@ const planeMaterial = new THREE.MeshPhongMaterial({
   flatShading: THREE.FlatShading,
   vertexColors: true
 });
+
+for (let i = 0; i < planeMesh.geometry.attributes.position.count; i++) {
+  colors.push(0, 0, 1);
+}
+
 const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 planeMesh.geometry.setAttribute('color', 
   new THREE.BufferAttribute(new Float32Array(colors), 
@@ -98,11 +101,7 @@ for (let i = 0; i < array.length; i+= 3) {
 
 }
 
-for (let i = 0; i < planeMesh.geometry.attributes.position.count; i++) {
-  
-  colors.push(0, 0, 1);
 
-}
 
 
 
