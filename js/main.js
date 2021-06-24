@@ -10,7 +10,7 @@
  * 2021-06-23  Create the scene and mouse listener
  */
 
-import "./style.css";
+// import "./style.css";
 import * as THREE from "./lib/three.module.js";
 import { OrbitControls } from "./lib/OrbitControls.js";
 import * as dat from './lib/dat.gui.module.js';
