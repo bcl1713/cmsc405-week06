@@ -1,52 +1,11 @@
-/*
- * File:         style.css
- * Created Date: 2021-06-22
- * Author:       Brian Lucas
- * Purpose:      
- * -----
- * Last Modified: Tue Jun 22 2021
- * HISTORY:
- * Date        Comments
- */
-
-
 body, html {
-  height: 100%;
-}
-
-body {
   margin: 0;
-  background-color: black;
 }
-
-.absolute {
-  position: absolute;
-}
-
-.text-white {
-  color: white;
-}
-
-.text-center {
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-}
-
-.box-center {
+  color: #2c3e50;
   margin: 0;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.landing-box {
-  position: absolute;
-  margin: 0;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: whitesmoke;
-  transform: translate3d(-50%, -50%, 0);
 }
