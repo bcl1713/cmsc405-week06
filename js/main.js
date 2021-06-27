@@ -15,7 +15,7 @@ import * as THREE from "./lib/three.module.js";
 import { OrbitControls } from "./lib/OrbitControls.js";
 import * as dat from './lib/dat.gui.module.js';
 
-const gui = new dat.GUI;
+// const gui = new dat.GUI;
 
 let maxfov = 1
 let minfov = 0.1
@@ -43,8 +43,8 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   10000000
 );
-gui.add(world.camera, "distance", 6, 2000000);
-gui.add(world.camera, "fov", 0.1, 180);
+// gui.add(world.camera, "distance", 6, 2000000);
+// gui.add(world.camera, "fov", 0.1, 180);
 
 const renderer = new THREE.WebGLRenderer({ 
   antialias: true,
