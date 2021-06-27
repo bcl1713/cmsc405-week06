@@ -93,7 +93,7 @@ const earthMesh = new THREE.Mesh(
 let sateliteOrbit = [];
 
 const sateliteMesh = new THREE.Mesh(
-  new THREE.CylinderGeometry(.15, .15, .31, 100, 100),
+  new THREE.CylinderGeometry(1.5, 1.5, 3.1, 100, 100),
   new THREE.MeshPhongMaterial({
     color: 0x777777,
     shininess: 128
