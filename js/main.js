@@ -62,7 +62,7 @@ const loader = new THREE.TextureLoader();
 const sunMesh = new THREE.Mesh(
   new THREE.SphereGeometry(700, 100, 100),
   new THREE.MeshBasicMaterial({
-    map: loader.load("./textures/sun.jpg"),
+    map: loader.load('./js/textures/sun.jpg'),
   })
 );
 
@@ -77,7 +77,7 @@ scene.add(ambientLight);
 const moonMesh = new THREE.Mesh(
   new THREE.SphereGeometry(1.7381, 100, 100),
   new THREE.MeshPhongMaterial({
-    map: loader.load("./textures/moon.jpg"),
+    map: loader.load("./js/textures/moon.jpg"),
     shininess: 0
   })
 )
@@ -85,7 +85,7 @@ const moonMesh = new THREE.Mesh(
 const earthMesh = new THREE.Mesh(
   new THREE.SphereGeometry(6.3781, 100, 100),
   new THREE.MeshPhongMaterial({
-    map: loader.load("./textures/earth.jpg"),
+    map: loader.load("./js/textures/earth.jpg"),
     shininess: 0
   })
 );
@@ -116,7 +116,7 @@ for (let i = 0; i < 11; i++) {
 const halo = new THREE.Mesh(
   new THREE.TorusGeometry(24, 1, 100, 100),
   new THREE.MeshPhongMaterial({
-    map: loader.load('textures/halo.jpg'),
+    map: loader.load('./js/textures/halo.jpg'),
     shininess: 128
   }));
 halo.scale.set(1, 1, 4);
