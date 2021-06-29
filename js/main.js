@@ -153,7 +153,7 @@ camera.updateProjectionMatrix();
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
-  if (world.camera.animation) {
+  if (world.camera.Animation) {
     sunMesh.rotation.y += 0.0005;
     earthMesh.rotation.y = frame;
     moonMesh.rotation.y = frame / 28;
@@ -169,7 +169,7 @@ function animate() {
         let b = maxfov;
         let c = minfov - maxfov;
         let d = initialAnimationLength;
-        world.camera.fov = quadraticEasing(time, maxfov, minfov, initialAnimationLength);
+        world.camera.FOV = quadraticEasing(time, maxfov, minfov, initialAnimationLength);
         camera.position.y = quadraticEasing(time, 0, 200, initialAnimationLength);
         camera.lookAt(0, 0, 0);
         camera.fov = world.camera.fov;
@@ -186,17 +186,15 @@ function animate() {
         camera.position.x = (Math.sin(cameraFrame / 4) * world.camera.CameraDistance);
         camera.position.z = (Math.cos(cameraFrame / 4) * world.camera.CameraDistance);
         camera.position.y = (Math.cos(cameraFrame) * 200);
-
         camera.lookAt(0, 0, 0);
       
       }
     }
 
-    
     frame+=frameStep;
-  }
+  } 
   camera.position.z = world.camera.CameraDistance;
-  camera.fov = world.camera.fov;
+  camera.FOV = world.camera.fov;
   camera.updateProjectionMatrix;
 }
 
