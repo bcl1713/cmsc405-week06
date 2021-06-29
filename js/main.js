@@ -46,8 +46,8 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 const animationToggle = gui.add(world.camera, "animation");
-const distanceSlider = gui.add(world.camera, "CameraZ", 6, 2000000).listen();
-const fovSlider = gui.add(world.camera, "fov", 0.1, 180).listen();
+const distanceSlider = gui.add(world.camera, "CameraZ", minCameraDistance, maxCameraDistance).listen();
+const fovSlider = gui.add(world.camera, "fov", minfov, maxfov).listen();
 
 const renderer = new THREE.WebGLRenderer({ 
   antialias: true,
@@ -193,11 +193,12 @@ function animate() {
       }
     }
 
+    
+    frame+=frameStep;
+  }
     camera.position.z = world.camera.CameraZ;
     camera.fov = world.camera.fov;
     camera.updateProjectionMatrix;
-    frame+=frameStep;
-  }
 }
 
 function easeInOutQuad (t, b, c, d) {
