@@ -194,7 +194,7 @@ function animate() {
     
     frame+=frameStep;
   }
-  camera.position.z = world.camera.CameraDistance;
+  // camera.position.z = world.camera.CameraDistance;
   camera.fov = world.camera.fov;
   camera.updateProjectionMatrix;
   renderer.render(scene, camera);
