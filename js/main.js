@@ -46,7 +46,7 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 const animationToggle = gui.add(world.camera, "animation");
-const distanceSlider = gui.add(world.camera, "distance", 6, 2000000).listen();
+const distanceSlider = gui.add(world.camera, "CameraZ", 6, 2000000).listen();
 const fovSlider = gui.add(world.camera, "fov", 0.1, 180).listen();
 
 const renderer = new THREE.WebGLRenderer({ 
