@@ -151,8 +151,9 @@ camera.updateProjectionMatrix();
 
 
 function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
   if (world.camera.animation) {
-
     sunMesh.rotation.y += 0.0005;
     earthMesh.rotation.y = frame;
     moonMesh.rotation.y = frame / 28;
@@ -194,11 +195,9 @@ function animate() {
     
     frame+=frameStep;
   }
-  // camera.position.z = world.camera.CameraDistance;
+  camera.position.z = world.camera.CameraDistance;
   camera.fov = world.camera.fov;
   camera.updateProjectionMatrix;
-  renderer.render(scene, camera);
-  requestAnimationFrame(animate);
 }
 
 function easeInOutQuad (t, b, c, d) {
