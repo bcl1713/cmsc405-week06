@@ -45,9 +45,9 @@ const camera = new THREE.PerspectiveCamera(
   10000000
 );
 
-gui.add(world.camera, "animation");
-gui.add(world.camera, "distance", 6, 2000000);
-gui.add(world.camera, "fov", 0.1, 180);
+const animationToggle = gui.add(world.camera, "animation");
+const distanceSlider = gui.add(world.camera, "distance", 6, 2000000).listen();
+const fovSlider = gui.add(world.camera, "fov", 0.1, 180).listen();
 
 const renderer = new THREE.WebGLRenderer({ 
   antialias: true,
@@ -151,49 +151,52 @@ camera.updateProjectionMatrix();
 
 
 function animate() {
-  requestAnimationFrame(animate);
-  renderer.render(scene, camera);
+  if (world.camera.animation) {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
 
-  sunMesh.rotation.y += 0.0005;
-  earthMesh.rotation.y = frame;
-  moonMesh.rotation.y = frame / 28;
-  moonMesh.position.set(Math.sin(frame/28) * 384, 0, Math.cos(frame/28) * 384);
-  sateliteGroup.rotation.y = frame / 2;
-  halo.rotation.z = frame / 16;
-  
-  if (frame >= initialPause) {
-  
-    if (initialAnimation == true) {
-      let time = (frame - initialPause);
-      let t = frame - initialPause
-      let b = maxfov;
-      let c = minfov - maxfov;
-      let d = initialAnimationLength;
-      world.camera.fov = quadraticEasing(time, maxfov, minfov, initialAnimationLength);
-      camera.position.y = quadraticEasing(time, 0, 200, initialAnimationLength);
-      camera.lookAt(0, 0, 0);
-      camera.fov = world.camera.fov;
-      console.log(camera.position.y);
-      camera.updateProjectionMatrix();
-      if (time >= initialAnimationLength) {
-        initialAnimation = false;
+    sunMesh.rotation.y += 0.0005;
+    earthMesh.rotation.y = frame;
+    moonMesh.rotation.y = frame / 28;
+    moonMesh.position.set(Math.sin(frame/28) * 384, 0, Math.cos(frame/28) * 384);
+    sateliteGroup.rotation.y = frame / 2;
+    halo.rotation.z = frame / 16;
+    
+    if (frame >= initialPause) {
+    
+      if (initialAnimation == true) {
+        let time = (frame - initialPause);
+        let t = frame - initialPause
+        let b = maxfov;
+        let c = minfov - maxfov;
+        let d = initialAnimationLength;
+        world.camera.fov = quadraticEasing(time, maxfov, minfov, initialAnimationLength);
+        camera.position.y = quadraticEasing(time, 0, 200, initialAnimationLength);
+        camera.lookAt(0, 0, 0);
+        camera.fov = world.camera.fov;
+        console.log(camera.position.y);
+        camera.updateProjectionMatrix();
+        if (time >= initialAnimationLength) {
+          initialAnimation = false;
+        }
+        
+      } else {
+      
+        let cameraFrame = frame - initialAnimationLength - initialPause;
+        console.log(world.camera.distance);
+        
+        world.camera.distance = Math.cos(cameraFrame / 3) * ((maxCameraDistance - minCameraDistance) / 2) + ((maxCameraDistance - minCameraDistance) / 2) + minCameraDistance;
+        camera.position.x = (Math.sin(cameraFrame / 4) * world.camera.distance);
+        camera.position.z = (Math.cos(cameraFrame / 4) * world.camera.distance);
+        camera.position.y = (Math.cos(cameraFrame) * 200);
+
+        camera.lookAt(0, 0, 0);
+      
       }
-      
-    } else {
-    
-      let cameraFrame = frame - initialAnimationLength - initialPause;
-      console.log(world.camera.distance);
-      
-      world.camera.distance = Math.cos(cameraFrame / 3) * ((maxCameraDistance - minCameraDistance) / 2) + ((maxCameraDistance - minCameraDistance) / 2) + minCameraDistance;
-      camera.position.x = (Math.sin(cameraFrame / 4) * world.camera.distance);
-      camera.position.z = (Math.cos(cameraFrame / 4) * world.camera.distance);
-      camera.position.y = (Math.cos(cameraFrame) * 200);
-
-      camera.lookAt(0, 0, 0);
-    
     }
+
+    frame+=frameStep;
   }
-  frame+=frameStep;
 }
 
 function easeInOutQuad (t, b, c, d) {
