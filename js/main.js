@@ -183,7 +183,6 @@ function animate() {
       
         let cameraFrame = frame - initialAnimationLength - initialPause;
         console.log(world.camera.distance);
-        camera.fov = world.camera.fov;
         world.camera.distance = Math.cos(cameraFrame / 3) * ((maxCameraDistance - minCameraDistance) / 2) + ((maxCameraDistance - minCameraDistance) / 2) + minCameraDistance;
         camera.position.x = (Math.sin(cameraFrame / 4) * world.camera.distance);
         camera.position.z = (Math.cos(cameraFrame / 4) * world.camera.distance);
@@ -194,6 +193,9 @@ function animate() {
       }
     }
 
+    camera.position.y = world.camera.distance;
+    camera.fov = world.camera.fov;
+    camera.updateProjectionMatrix;
     frame+=frameStep;
   }
 }
