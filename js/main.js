@@ -26,7 +26,10 @@ const world = {
   camera: {
     Animation: true,
     CameraDistance: maxCameraDistance,
-    FOV: 1
+    FOV: 1,
+    x: 0,
+    y: 0,
+    z: 0
   }
 }
 
@@ -45,9 +48,13 @@ const camera = new THREE.PerspectiveCamera(
   10000000
 );
 
-const animationToggle = gui.add(world.camera, "Animation");
-const distanceSlider = gui.add(world.camera, "CameraDistance", minCameraDistance, maxCameraDistance).listen();
-const fovSlider = gui.add(world.camera, "FOV", minfov, maxfov).listen();
+gui.add(world.camera, "Animation");
+gui.add(world.camera, "CameraDistance", minCameraDistance, maxCameraDistance).listen();
+gui.add(world.camera, "FOV", minfov, maxfov).listen();
+gui.add(world.camera, "x", -maxCameraDistance, maxCameraDistance).listen;
+gui.add(world.camera, "x", -maxCameraDistance, maxCameraDistance).listen;
+gui.add(world.camera, "z", -maxCameraDistance, maxCameraDistance).listen;
+
 
 const renderer = new THREE.WebGLRenderer({ 
   antialias: true,
@@ -93,16 +100,6 @@ const earthMesh = new THREE.Mesh(
   })
 );
 
-// let sateliteOrbit = [];
-
-// const sateliteMesh = new THREE.Mesh(
-//   new THREE.CylinderGeometry(1.5, 1.5, 3.1, 100, 100),
-//   new THREE.MeshPhongMaterial({
-//     color: 0x777777,
-//     shininess: 128
-//   })
-// )
-
 const sateliteGroup = new THREE.Group();
 const satelites = new Array(11);
 for (let i = 0; i < 11; i++) {
@@ -136,7 +133,10 @@ scene.add(earthMesh);
 
 scene.add(sateliteGroup);
 
-camera.position.set(0, 0, world.camera.CameraDistance);
+world.camera.x = 0;
+world.camera.y = 0;
+world.camera.z = world.camera.CameraDistance;
+camera.position.set(world.camera.x, world.camera.y, world.camera.z);
 
 let frame = 0;
 let frameStep = 0.003125;
@@ -146,7 +146,7 @@ let initialAnimationLength = 4;
 
 
 
-camera.fov = maxfov;
+camera.fov = world.camera.FOV;
 camera.updateProjectionMatrix();
 
 
@@ -159,7 +159,7 @@ function animate() {
     moonMesh.rotation.y = frame / 28;
     moonMesh.position.set(Math.sin(frame/28) * 384, 0, Math.cos(frame/28) * 384);
     sateliteGroup.rotation.y = frame / 2;
-    halo.rotation.z = frame / 16;
+    halo.rotation.z = frame / 2;
     
     if (frame >= initialPause) {
     
@@ -170,7 +170,7 @@ function animate() {
         let c = minfov - maxfov;
         let d = initialAnimationLength;
         world.camera.FOV = quadraticEasing(time, maxfov, minfov, initialAnimationLength);
-        camera.position.y = quadraticEasing(time, 0, 200, initialAnimationLength);
+        world.camera.y = quadraticEasing(time, 0, 200, initialAnimationLength);
         if (time >= initialAnimationLength) {
           initialAnimation = false;
         }
@@ -180,19 +180,19 @@ function animate() {
         let cameraFrame = frame - initialAnimationLength - initialPause;
         console.log(world.camera.CameraDistance);
         world.camera.CameraDistance = Math.cos(cameraFrame / 3) * ((maxCameraDistance - minCameraDistance) / 2) + ((maxCameraDistance - minCameraDistance) / 2) + minCameraDistance;
-        camera.position.x = (Math.sin(cameraFrame / 4) * world.camera.CameraDistance);
-        camera.position.z = (Math.cos(cameraFrame / 4) * world.camera.CameraDistance);
-        camera.position.y = (Math.cos(cameraFrame) * 200);
+        world.camera.x = (Math.sin(cameraFrame / 4) * world.camera.CameraDistance);
+        world.camera.z = (Math.cos(cameraFrame / 4) * world.camera.CameraDistance);
+        world.camera.y = (Math.cos(cameraFrame) * 200);
       
       }
     }
 
     frame+=frameStep;
   } 
-  // camera.position.z = world.camera.CameraDistance;
+  camera.position.set(world.camera.x, world.camera.y, world.camera.z);
   camera.lookAt(0, 0, 0);
   camera.fov = world.camera.FOV;
-  camera.updateProjectionMatrix;
+  camera.updateProjectionMatrix();
 }
 
 function easeInOutQuad (t, b, c, d) {
