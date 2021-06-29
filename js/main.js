@@ -172,7 +172,7 @@ function animate() {
         world.camera.FOV = quadraticEasing(time, maxfov, minfov, initialAnimationLength);
         camera.position.y = quadraticEasing(time, 0, 200, initialAnimationLength);
         camera.lookAt(0, 0, 0);
-        camera.fov = world.camera.fov;
+        camera.fov = world.camera.FOV;
         camera.updateProjectionMatrix();
         if (time >= initialAnimationLength) {
           initialAnimation = false;
