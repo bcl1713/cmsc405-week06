@@ -30,6 +30,12 @@ const world = {
     x: 0,
     y: 0,
     z: 0
+  },
+  lights: {
+    AmbientColor: 0x444444,
+    AmbientIntensity: 1,
+    SunlightColor: 0xf5c379,
+    SunlightIntensity: 2
   }
 }
 
@@ -48,11 +54,20 @@ const camera = new THREE.PerspectiveCamera(
   10000000
 );
 
-gui.add(world.camera, "Animation");
-gui.add(world.camera, "FOV", minfov, maxfov).listen();
-gui.add(world.camera, "x", -maxCameraDistance, maxCameraDistance).listen();
-gui.add(world.camera, "y", -maxCameraDistance, maxCameraDistance).listen();
-gui.add(world.camera, "z", -maxCameraDistance, maxCameraDistance).listen();
+const cameraFolder = gui.addFolder("Camera");
+
+cameraFolder.add(world.camera, "Animation");
+cameraFolder.add(world.camera, "FOV", minfov, maxfov).listen();
+cameraFolder.add(world.camera, "x", -maxCameraDistance, maxCameraDistance).listen();
+cameraFolder.add(world.camera, "y", -maxCameraDistance, maxCameraDistance).listen();
+cameraFolder.add(world.camera, "z", -maxCameraDistance, maxCameraDistance).listen();
+
+const lightFolder = gui.addFolder("Lights");
+
+lightFolder.addColor(world.lights, "AmbientColor").listen();
+lightFolder.add(world.lights, "AmbientIntensity", 0, 2).listen();
+lightFolder.addColor(world.lights, "SunlightColor").listen();
+lightFolder.add(world.lights, "SunlightIntensity", 0, 2).listen();
 
 
 const renderer = new THREE.WebGLRenderer({ 
@@ -75,11 +90,11 @@ const sunMesh = new THREE.Mesh(
   })
 );
 
-const sunLight = new THREE.PointLight (0xffffff, 2);
+const sunLight = new THREE.PointLight (world.lights.SunlightColor, world.lights.SunlightIntensity);
 sunLight.position.set(0, 0, -150000);
 scene.add (sunLight);
 
-const ambientLight = new THREE.AmbientLight(0x444444);
+const ambientLight = new THREE.AmbientLight(world.lights.AmbientColor);
 scene.add(ambientLight);
 
 
@@ -105,8 +120,8 @@ for (let i = 0; i < 11; i++) {
   satelites[i] = new THREE.Mesh(
     new THREE.CylinderGeometry(.15, .15, .31, 100, 100),
     new THREE.MeshPhongMaterial({
-      color: 0x777777,
-      shininess: 128
+      map: loader.load('./js/textures/sats.jpg'),
+      shininess: 1
     }));
   satelites[i].position.set(Math.sin((i * 2 * Math.PI)/11) * 7, 0, Math.cos((i * 2 * Math.PI)/11) * 7);
   sateliteGroup.add(satelites[i]);
@@ -188,6 +203,10 @@ function animate() {
 
     frame+=frameStep;
   } 
+  ambientLight.color.setHex(world.lights.AmbientColor);
+  ambientLight.intensity = world.lights.AmbientIntensity;
+  sunLight.color.setHex(world.lights.SunlightColor);
+  sunLight.intensity = world.lights.SunlightIntensity;
   camera.position.set(world.camera.x, world.camera.y, world.camera.z);
   camera.lookAt(0, 0, 0);
   camera.fov = world.camera.FOV;
