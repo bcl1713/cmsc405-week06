@@ -51,9 +51,9 @@ const camera = new THREE.PerspectiveCamera(
 gui.add(world.camera, "Animation");
 gui.add(world.camera, "CameraDistance", minCameraDistance, maxCameraDistance).listen();
 gui.add(world.camera, "FOV", minfov, maxfov).listen();
-gui.add(world.camera, "x", -maxCameraDistance, maxCameraDistance).listen;
-gui.add(world.camera, "x", -maxCameraDistance, maxCameraDistance).listen;
-gui.add(world.camera, "z", -maxCameraDistance, maxCameraDistance).listen;
+gui.add(world.camera, "x", -maxCameraDistance, maxCameraDistance).listen();
+gui.add(world.camera, "x", -maxCameraDistance, maxCameraDistance).listen();
+gui.add(world.camera, "z", -maxCameraDistance, maxCameraDistance).listen();
 
 
 const renderer = new THREE.WebGLRenderer({ 
