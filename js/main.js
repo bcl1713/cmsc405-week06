@@ -24,9 +24,9 @@ let maxCameraDistance = 30000;
 
 const world = {
   camera: {
-    animation: true,
-    CameraZ: maxCameraDistance,
-    fov: 1
+    Animation: true,
+    CameraDistance: maxCameraDistance,
+    FOV: 1
   }
 }
 
@@ -45,9 +45,9 @@ const camera = new THREE.PerspectiveCamera(
   10000000
 );
 
-const animationToggle = gui.add(world.camera, "animation");
-const distanceSlider = gui.add(world.camera, "CameraZ", minCameraDistance, maxCameraDistance).listen();
-const fovSlider = gui.add(world.camera, "fov", minfov, maxfov).listen();
+const animationToggle = gui.add(world.camera, "Animation");
+const distanceSlider = gui.add(world.camera, "CameraDistance", minCameraDistance, maxCameraDistance).listen();
+const fovSlider = gui.add(world.camera, "FOV", minfov, maxfov).listen();
 
 const renderer = new THREE.WebGLRenderer({ 
   antialias: true,
@@ -136,7 +136,7 @@ scene.add(earthMesh);
 
 scene.add(sateliteGroup);
 
-camera.position.set(0, 0, world.camera.CameraZ);
+camera.position.set(0, 0, world.camera.CameraDistance);
 
 let frame = 0;
 let frameStep = 0.003125;
@@ -151,9 +151,7 @@ camera.updateProjectionMatrix();
 
 
 function animate() {
-  requestAnimationFrame(animate);
   if (world.camera.animation) {
-    renderer.render(scene, camera);
 
     sunMesh.rotation.y += 0.0005;
     earthMesh.rotation.y = frame;
@@ -182,10 +180,10 @@ function animate() {
       } else {
       
         let cameraFrame = frame - initialAnimationLength - initialPause;
-        console.log(world.camera.CameraZ);
-        world.camera.CameraZ = Math.cos(cameraFrame / 3) * ((maxCameraDistance - minCameraDistance) / 2) + ((maxCameraDistance - minCameraDistance) / 2) + minCameraDistance;
-        camera.position.x = (Math.sin(cameraFrame / 4) * world.camera.CameraZ);
-        camera.position.z = (Math.cos(cameraFrame / 4) * world.camera.CameraZ);
+        console.log(world.camera.CameraDistance);
+        world.camera.CameraDistance = Math.cos(cameraFrame / 3) * ((maxCameraDistance - minCameraDistance) / 2) + ((maxCameraDistance - minCameraDistance) / 2) + minCameraDistance;
+        camera.position.x = (Math.sin(cameraFrame / 4) * world.camera.CameraDistance);
+        camera.position.z = (Math.cos(cameraFrame / 4) * world.camera.CameraDistance);
         camera.position.y = (Math.cos(cameraFrame) * 200);
 
         camera.lookAt(0, 0, 0);
@@ -196,9 +194,11 @@ function animate() {
     
     frame+=frameStep;
   }
-    camera.position.z = world.camera.CameraZ;
-    camera.fov = world.camera.fov;
-    camera.updateProjectionMatrix;
+  camera.position.z = world.camera.CameraDistance;
+  camera.fov = world.camera.fov;
+  camera.updateProjectionMatrix;
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
 }
 
 function easeInOutQuad (t, b, c, d) {
