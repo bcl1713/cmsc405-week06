@@ -151,8 +151,8 @@ camera.updateProjectionMatrix();
 
 
 function animate() {
+  requestAnimationFrame(animate);
   if (world.camera.animation) {
-    requestAnimationFrame(animate);
     renderer.render(scene, camera);
 
     sunMesh.rotation.y += 0.0005;
@@ -174,7 +174,6 @@ function animate() {
         camera.position.y = quadraticEasing(time, 0, 200, initialAnimationLength);
         camera.lookAt(0, 0, 0);
         camera.fov = world.camera.fov;
-        console.log(camera.position.y);
         camera.updateProjectionMatrix();
         if (time >= initialAnimationLength) {
           initialAnimation = false;
@@ -184,7 +183,7 @@ function animate() {
       
         let cameraFrame = frame - initialAnimationLength - initialPause;
         console.log(world.camera.distance);
-        
+        camera.fov = world.camera.fov;
         world.camera.distance = Math.cos(cameraFrame / 3) * ((maxCameraDistance - minCameraDistance) / 2) + ((maxCameraDistance - minCameraDistance) / 2) + minCameraDistance;
         camera.position.x = (Math.sin(cameraFrame / 4) * world.camera.distance);
         camera.position.z = (Math.cos(cameraFrame / 4) * world.camera.distance);
