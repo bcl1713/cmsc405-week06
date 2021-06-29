@@ -193,7 +193,7 @@ function animate() {
 
     frame+=frameStep;
   } 
-  camera.position.z = world.camera.CameraDistance;
+  // camera.position.z = world.camera.CameraDistance;
   camera.FOV = world.camera.fov;
   camera.updateProjectionMatrix;
 }
