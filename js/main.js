@@ -25,7 +25,7 @@ let maxCameraDistance = 30000;
 const world = {
   camera: {
     animation: true,
-    distance: maxCameraDistance,
+    CameraZ: maxCameraDistance,
     fov: 1
   }
 }
@@ -136,7 +136,7 @@ scene.add(earthMesh);
 
 scene.add(sateliteGroup);
 
-camera.position.set(0, 0, world.camera.distance);
+camera.position.set(0, 0, world.camera.CameraZ);
 
 let frame = 0;
 let frameStep = 0.003125;
@@ -182,10 +182,10 @@ function animate() {
       } else {
       
         let cameraFrame = frame - initialAnimationLength - initialPause;
-        console.log(world.camera.distance);
-        world.camera.distance = Math.cos(cameraFrame / 3) * ((maxCameraDistance - minCameraDistance) / 2) + ((maxCameraDistance - minCameraDistance) / 2) + minCameraDistance;
-        camera.position.x = (Math.sin(cameraFrame / 4) * world.camera.distance);
-        camera.position.z = (Math.cos(cameraFrame / 4) * world.camera.distance);
+        console.log(world.camera.CameraZ);
+        world.camera.CameraZ = Math.cos(cameraFrame / 3) * ((maxCameraDistance - minCameraDistance) / 2) + ((maxCameraDistance - minCameraDistance) / 2) + minCameraDistance;
+        camera.position.x = (Math.sin(cameraFrame / 4) * world.camera.CameraZ);
+        camera.position.z = (Math.cos(cameraFrame / 4) * world.camera.CameraZ);
         camera.position.y = (Math.cos(cameraFrame) * 200);
 
         camera.lookAt(0, 0, 0);
@@ -193,7 +193,7 @@ function animate() {
       }
     }
 
-    camera.position.y = world.camera.distance;
+    camera.position.z = world.camera.CameraZ;
     camera.fov = world.camera.fov;
     camera.updateProjectionMatrix;
     frame+=frameStep;
