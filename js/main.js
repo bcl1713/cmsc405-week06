@@ -171,9 +171,6 @@ function animate() {
         let d = initialAnimationLength;
         world.camera.FOV = quadraticEasing(time, maxfov, minfov, initialAnimationLength);
         camera.position.y = quadraticEasing(time, 0, 200, initialAnimationLength);
-        camera.lookAt(0, 0, 0);
-        camera.fov = world.camera.FOV;
-        camera.updateProjectionMatrix();
         if (time >= initialAnimationLength) {
           initialAnimation = false;
         }
@@ -186,7 +183,6 @@ function animate() {
         camera.position.x = (Math.sin(cameraFrame / 4) * world.camera.CameraDistance);
         camera.position.z = (Math.cos(cameraFrame / 4) * world.camera.CameraDistance);
         camera.position.y = (Math.cos(cameraFrame) * 200);
-        camera.lookAt(0, 0, 0);
       
       }
     }
@@ -194,7 +190,8 @@ function animate() {
     frame+=frameStep;
   } 
   // camera.position.z = world.camera.CameraDistance;
-  camera.FOV = world.camera.fov;
+  camera.lookAt(0, 0, 0);
+  camera.fov = world.camera.FOV;
   camera.updateProjectionMatrix;
 }
 
