@@ -4,7 +4,7 @@
  * Author:       Brian Lucas
  * Purpose:
  * -----
- * Last Modified: Sun Jun 27 2021
+ * Last Modified: Tue Jun 29 2021
  * HISTORY:
  * Date        Comments
  * 2021-06-23  Create the scene and mouse listener
@@ -12,10 +12,10 @@
 
 // import "./lib/style.css";
 import * as THREE from "./lib/three.module.js";
-import { OrbitControls } from "./lib/OrbitControls.js";
+// import { OrbitControls } from "./lib/OrbitControls.js";
 import * as dat from './lib/dat.gui.module.js';
 
-// const gui = new dat.GUI;
+const gui = new dat.GUI;
 
 let maxfov = 1
 let minfov = 0.1
@@ -24,6 +24,7 @@ let maxCameraDistance = 30000;
 
 const world = {
   camera: {
+    animation: true,
     distance: maxCameraDistance,
     fov: 1
   }
@@ -43,8 +44,10 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   10000000
 );
-// gui.add(world.camera, "distance", 6, 2000000);
-// gui.add(world.camera, "fov", 0.1, 180);
+
+gui.add(world.camera, "animation");
+gui.add(world.camera, "distance", 6, 2000000);
+gui.add(world.camera, "fov", 0.1, 180);
 
 const renderer = new THREE.WebGLRenderer({ 
   antialias: true,
@@ -52,7 +55,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(innerWidth, innerHeight);
 
 // Add controls
-const controls = new OrbitControls(camera, renderer.domElement);
+// const controls = new OrbitControls(camera, renderer.domElement);
 
 // Add the renderer to the page
 document.body.appendChild(renderer.domElement);
